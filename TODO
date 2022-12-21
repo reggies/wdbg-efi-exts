@@ -1,0 +1,29 @@
+- [ ] Variable list could be handled more accurately in
+  regard to attributes. See Ovmf sources
+- [-] Create Windows User-mode application for EFI variables enumeration
+  - [ ] Call directly into gRT->GetNextVariable() from
+    windows driver
+    - [ ] Possible?
+  - [-] Hook GetVariable/SetVariable to obtain variable list
+    from runtime
+    - [X] Possible?
+      - Yep
+    - [ ] Implement
+- [-] WinDBG extension to enumerate variables
+  - [ ] Hook GetVariable/SetVariable to obtain variable list from runtime
+  - [X] Hook SetVariable and maintain variable list
+- [ ] Other options to enumerate runtime drivers
+  - [ ] Scan EfiRuntimeServicesCode memory regions
+  - [ ] Utilize PI 2.0 gEfiRuntimeArchProtocolGuid
+- [ ] Other options to enumerate Nvram variables
+  - [ ] Reverse engineer VariableSmm.efi
+- [ ] Variable values
+  - [ ] No variable values are cached atm. Can we do better?
+- [ ] BS-only varibles should not be enumerated at runtime
+  - confirmed by looking at FindVariableEx() in
+    MdeModulePkg/Universal/Variable/RuntimeDxe/VariableParsing.c
+  - on real BIOSes they are enumerated, though
+- OVMF fails to return attributes in response to GetVariable()
+- [ ] implement !findefivars
+- add signature to efi runtime driver list
+  - and implement !findruntime

@@ -1,0 +1,72 @@
+;
+; efihlp.inf
+;
+
+[Version]
+Signature       = "$WINDOWS NT$"
+Class           = System
+ClassGuid       = {4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider        = %ManufacturerName%
+DriverVer       =
+CatalogFile     = efihlp.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+efihlp.DriverFiles  = 12            ;%windir%\system32\drivers
+
+
+
+;;
+;; Default install sections
+;;
+
+
+[DefaultInstall]
+OptionDesc  = %ServiceDescription%
+CopyFiles   = efihlp.DriverFiles
+
+[DefaultInstall.Services]
+AddService  = %ServiceName%,,efihlp.Service
+
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles   = efihlp.DriverFiles
+
+
+;
+; Services Section
+;
+
+[efihlp.Service]
+DisplayName      = %ServiceName%
+Description      = %ServiceDescription%
+ServiceBinary    = %12%\%DriverName%.sys    ;%windir%\system32\drivers\
+ServiceType      = 1                        ;SERVICE_KERNEL_DRIVER
+StartType        = 3                        ;SERVICE_DEMAND_START
+ErrorControl     = 1                        ;SERVICE_ERROR_NORMAL
+
+;
+; Copy Files
+;
+
+[efihlp.DriverFiles]
+%DriverName%.sys
+
+[SourceDisksFiles]
+efihlp.sys = 1,,
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+
+[Strings]
+ManufacturerName        = "reggies"
+ClassName               = ""
+ServiceDescription      = "EFI debug helper driver"
+ServiceName             = "efihlp"
+DriverName              = "efihlp"
+DiskId1                 = "efihlp installation disk"

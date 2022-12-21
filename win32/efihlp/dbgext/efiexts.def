@@ -1,0 +1,8 @@
+LIBRARY efiexts
+
+EXPORTS
+    DebugExtensionInitialize
+    DebugExtensionUninitialize
+    lsefi
+    efivars
+    findfwmem

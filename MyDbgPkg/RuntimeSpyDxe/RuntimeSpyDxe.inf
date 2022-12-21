@@ -1,0 +1,35 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RuntimeSpyDxe
+  FILE_GUID                      = 8FC92FBE-24F5-4022-B7DB-31924BE68A09
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = UefiMain
+
+[Sources]
+  RuntimeSpy.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DebugLib
+  DevicePathLib
+  UefiLib
+
+[Protocols]
+  gEfiLoadedImageProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiDriverBindingProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+
+[Guids]
+  gEfiEventExitBootServicesGuid                 ## CONSUMES ## Event
+  gEfiEventVirtualAddressChangeGuid             ## CONSUMES ## Event
+
+[Depex]
+  TRUE
